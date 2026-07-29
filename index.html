@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ресторант МАКС — Драгалевци, София | Кухня, тържества и сватби</title>
+
+    <!-- Security headers (meta-based; frame-ancestors/HSTS require real HTTP headers — see _headers) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self'; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=(), usb=()">
+
+    <!-- SEO -->
+    <meta name="description" content="Ресторант МАКС в кв. Драгалевци, София — домашна кухня, лятна градина и детски кът. Над 16 години организираме сватби, кръщенета, юбилеи и фирмени тържества.">
+    <meta name="keywords" content="ресторант макс,драгалевци,ресторант софия,сватби драгалевци,тържества,обедно меню,лятна градина,детски кът">
+    <meta name="author" content="Ресторант МАКС">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://restorantmaks.com/">
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="Ресторант МАКС">
+    <meta property="og:title" content="Ресторант МАКС — Драгалевци, София">
+    <meta property="og:description" content="Домашна кухня, лятна градина и детски кът в кв. Драгалевци. Над 16 години организираме сватби и семейни тържества.">
+    <meta property="og:type" content="restaurant">
+    <meta property="og:locale" content="bg_BG">
+    <meta property="og:url" content="https://restorantmaks.com/">
+    <meta property="og:image" content="https://restorantmaks.com/images/slider1.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta name="theme-color" content="#B8492F" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#14100D" media="(prefers-color-scheme: dark)">
+
+    <!-- Favicon -->
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/core.css">
+    <link rel="stylesheet" href="css/home.css">
+
+    <!-- Preload the first hero frame (LCP) — must match the leading slide below -->
+    <link rel="preload" as="image" href="images/slider2.jpg" fetchpriority="high">
+
+    <!-- Runs before first paint: applies the stored theme (no flash of the wrong
+         palette) and flags engines without scroll-driven animations so the
+         JS reveal fallback can take over without a flash of visible content. -->
+    <script>
+        (function () {
+            var root = document.documentElement;
+            try {
+                var t = localStorage.getItem('maks-theme');
+                if (t === 'dark' || t === 'light') root.dataset.theme = t;
+            } catch (e) { /* private mode — fall back to system preference */ }
+
+            if (!(window.CSS && CSS.supports && CSS.supports('animation-timeline: view()'))) {
+                root.classList.add('no-sda');
+            }
+        })();
+    </script>
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "Ресторант МАКС",
+      "description": "Ресторант МАКС в кв. Драгалевци, София — домашна кухня, лятна градина, детски кът и организиране на тържества.",
+      "image": "https://restorantmaks.com/images/slider1.jpg",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ул. „Захари Зограф“ 57",
+        "addressLocality": "Драгалевци",
+        "addressRegion": "София",
+        "postalCode": "1407",
+        "addressCountry": "BG"
+      },
+      "telephone": ["+359885653705", "+359885326396"],
+      "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "09:00",
+        "closes": "22:00"
+      }],
+      "priceRange": "$$",
+      "servesCuisine": "Bulgarian",
+      "hasMenu": "https://restorantmaks.com/menu.html",
+      "acceptsReservations": "True",
+      "url": "https://restorantmaks.com",
+      "sameAs": [
+        "https://www.facebook.com/MaksRest/",
+        "https://www.instagram.com/maks.lunch.dinner.cafe/"
+      ]
+    }
+    </script>
+</head>
+<body>
+    <a class="skip-link" href="#main">Към съдържанието</a>
+
+    <!-- Loader -->
+    <div class="loader" id="loader">
+        <div class="loader-mark">МАКС</div>
+        <div class="loader-bar"></div>
+    </div>
+    <noscript><style>#loader { display: none !important; }</style></noscript>
+
+    <!-- Navigation -->
+    <header class="site-nav" id="siteNav">
+        <div class="container nav-inner">
+            <a href="#hero" class="brand">
+                <span class="brand-word">Ресторант</span> <em>МАКС</em>
+            </a>
+
+            <nav aria-label="Основна навигация">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#about" class="nav-link">За нас</a></li>
+                    <li><a href="#gallery" class="nav-link">Галерия</a></li>
+                    <li><a href="#events" class="nav-link">Тържества</a></li>
+                    <li><a href="menu.html" class="nav-link">Меню</a></li>
+                    <li><a href="#contact" class="nav-link">Контакти</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="tel:+359885653705" class="nav-phone">
+                    <i class="fas fa-phone" aria-hidden="true"></i>
+                    <span>0885 653 705</span>
+                </a>
+
+                <a href="https://www.facebook.com/MaksRest/" class="nav-social" target="_blank" rel="noopener noreferrer" aria-label="Ресторант МАКС във Facebook">
+                    <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                </a>
+
+                <button type="button" class="theme-toggle" id="themeToggle" aria-label="Смяна на светла/тъмна тема">
+                    <i class="fas fa-moon icon-moon" aria-hidden="true"></i>
+                    <i class="fas fa-sun icon-sun" aria-hidden="true"></i>
+                </button>
+
+                <button type="button" class="nav-burger" id="navBurger" aria-expanded="false" aria-controls="navLinks" aria-label="Меню за навигация">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main">
+        <!-- ============================= HERO ============================= -->
+        <section class="hero" id="hero">
+            <div class="hero-stage" id="heroStage" aria-hidden="true">
+                <!-- slider2 leads: at 1595x847 it is the highest-resolution frame
+                     we have, so the LCP image is scaled ~1.06x instead of the 1.5x
+                     slider1 (1280x600) needed. --pos sets the horizontal focal
+                     point; the crop is always horizontal, so the Y value is inert. -->
+                <div class="hero-slide is-active" style="--pos: 45% center; background-image: url('images/slider2.jpg')"></div>
+                <div class="hero-slide" style="--pos: 30% center" data-bg="images/slider1.jpg"></div>
+                <div class="hero-slide" style="--pos: 40% center" data-bg="images/slider3.jpg"></div>
+            </div>
+            <div class="hero-scrim" aria-hidden="true"></div>
+            <div class="hero-particles" id="heroParticles" aria-hidden="true"></div>
+
+            <div class="container">
+                <div class="hero-content">
+                    <p class="hero-eyebrow">кв. Драгалевци · София</p>
+
+                    <h1 class="hero-title">
+                        Вкусът на дома
+                        <em>под Витоша</em>
+                    </h1>
+
+                    <p class="hero-lead">
+                        Повече от шестнайсет години посрещаме гости с домашна кухня,
+                        лятна градина и грижата на екип, който помни имената им.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="menu.html" class="btn">
+                            Разгледайте менюто
+                            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                        <a href="#events" class="btn btn--light">
+                            За тържества
+                        </a>
+                    </div>
+
+                    <div class="hero-meta">
+                        <span class="hero-meta-item">
+                            <i class="far fa-clock" aria-hidden="true"></i>
+                            Всеки ден 9:00 – 22:00
+                        </span>
+                        <span class="hero-meta-item">
+                            <i class="fas fa-location-dot" aria-hidden="true"></i>
+                            ул. „Захари Зограф“ 57
+                        </span>
+                        <span class="hero-meta-item">
+                            <i class="fas fa-child-reaching" aria-hidden="true"></i>
+                            Детски кът и лятна градина
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-dots" id="heroDots" role="tablist" aria-label="Смяна на изображението"></div>
+
+            <div class="hero-cue" id="heroCue" aria-hidden="true">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- ============================= ABOUT ============================= -->
+        <section class="section" id="about">
+            <div class="container">
+                <div class="about-grid">
+                    <figure class="about-figure reveal">
+                        <img src="images/about-image.jpg" alt="Интериорът на ресторант МАКС" width="800" height="533" loading="lazy" decoding="async">
+                        <div class="about-badge" aria-hidden="true">
+                            <span class="about-badge-num">16+</span>
+                            <span class="about-badge-label">години</span>
+                        </div>
+                    </figure>
+
+                    <div class="reveal">
+                        <p class="eyebrow">01 — За нас</p>
+                        <h2>Място, което помни своите гости</h2>
+
+                        <div class="about-body">
+                            <p class="about-body-lead">
+                                Ниски цени, качествено обслужване и кухня, която не бърза.
+                            </p>
+                            <p>
+                                Повече от <strong>16 години</strong> екипът ни от готвачи, сладкари,
+                                сервитьори и бармани се грижи за всички ваши <strong>сватбени тържества</strong>,
+                                юбилеи, кръщенета, рождени дни, фирмени празници и презентации.
+                                Стремим се да оправдаем доверието на всеки, който е избрал да
+                                прекара незабравими мигове при нас.
+                            </p>
+                        </div>
+
+                        <div class="about-features">
+                            <div class="about-feature">
+                                <i class="fas fa-tree" aria-hidden="true"></i>
+                                <strong>Лятна градина</strong>
+                                <span>Сянка и спокойствие в топлите месеци</span>
+                            </div>
+                            <div class="about-feature">
+                                <i class="fas fa-child-reaching" aria-hidden="true"></i>
+                                <strong>Детски кът</strong>
+                                <span>Докато родителите се хранят на спокойствие</span>
+                            </div>
+                            <div class="about-feature">
+                                <i class="fas fa-utensils" aria-hidden="true"></i>
+                                <strong>Обедно меню</strong>
+                                <span>Всеки делник, на достъпна цена</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================= GALLERY ============================= -->
+        <section class="section section--tinted" id="gallery">
+            <div class="container">
+                <div class="section-head section-head--centered reveal">
+                    <p class="eyebrow eyebrow--centered">02 — Галерия</p>
+                    <h2>Кухнята ни в кадри</h2>
+                    <p class="section-lead">
+                        Няколко от ястията, които приготвяме всеки ден — от американските закуски
+                        до китайските ястия и салатите от градината.
+                    </p>
+                </div>
+
+                <div class="gallery-grid reveal">
+                    <figure class="gallery-item">
+                        <img src="images/menu-image1.jpg" alt="Американски закуски" width="600" height="400" loading="lazy" decoding="async">
+                        <figcaption class="gallery-caption">Американски закуски</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/menu-image2.jpg" alt="Свежи салати" width="1200" height="800" loading="lazy" decoding="async">
+                        <figcaption class="gallery-caption">Салати</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/menu-image3.jpg" alt="Китайски ястия" width="600" height="400" loading="lazy" decoding="async">
+                        <figcaption class="gallery-caption">Китайски ястия</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/menu-image4.jpg" alt="Домашни супи" width="600" height="400" loading="lazy" decoding="async">
+                        <figcaption class="gallery-caption">Супи</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/menu-image5.jpg" alt="Ястие от менюто на ресторант МАКС" width="600" height="400" loading="lazy" decoding="async">
+                        <figcaption class="gallery-caption">От скарата</figcaption>
+                    </figure>
+                    <figure class="gallery-item">
+                        <img src="images/menu-image6.jpg" alt="Ястие от менюто на ресторант МАКС" width="600" height="400" loading="lazy" decoding="async">
+                        <figcaption class="gallery-caption">Специалитети</figcaption>
+                    </figure>
+                </div>
+
+                <div class="gallery-cta reveal">
+                    <a href="menu.html" class="btn btn--ghost">
+                        Вижте цялото меню
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================= EVENTS ============================= -->
+        <section class="events" id="events">
+            <div class="container">
+                <div class="section-head reveal">
+                    <p class="eyebrow">03 — Тържества</p>
+                    <h2>Вашият празник, нашата грижа</h2>
+                    <p class="section-lead">
+                        Сватба, кръщене, юбилей или фирмено събитие — поемаме организацията
+                        от менюто до последната маса, за да останете гости на собствения си празник.
+                    </p>
+                </div>
+
+                <div class="events-grid">
+                    <div class="reveal">
+                        <div class="events-types">
+                            <article class="event-card">
+                                <i class="fas fa-ring" aria-hidden="true"></i>
+                                <h3>Сватби</h3>
+                                <p>Пълна организация с индивидуално съгласувано меню и украса на залата.</p>
+                            </article>
+                            <article class="event-card">
+                                <i class="fas fa-dove" aria-hidden="true"></i>
+                                <h3>Кръщенета</h3>
+                                <p>Спокойна семейна атмосфера и детски кът за най-малките гости.</p>
+                            </article>
+                            <article class="event-card">
+                                <i class="fas fa-cake-candles" aria-hidden="true"></i>
+                                <h3>Рождени дни и юбилеи</h3>
+                                <p>Торта от нашия сладкар и меню, съобразено с вашите желания.</p>
+                            </article>
+                            <article class="event-card">
+                                <i class="fas fa-briefcase" aria-hidden="true"></i>
+                                <h3>Фирмени събития</h3>
+                                <p>Презентации, коледни партита и екипни вечери в отделна зала.</p>
+                            </article>
+                        </div>
+
+                        <div class="events-includes">
+                            <p class="events-include">
+                                <i class="fas fa-check" aria-hidden="true"></i>
+                                <span><strong>Професионален екип</strong> — готвачи, сладкари, сервитьори и бармани с дългогодишен опит.</span>
+                            </p>
+                            <p class="events-include">
+                                <i class="fas fa-check" aria-hidden="true"></i>
+                                <span><strong>Индивидуално меню</strong> — съставяме го заедно с вас според броя гости и бюджета.</span>
+                            </p>
+                            <p class="events-include">
+                                <i class="fas fa-check" aria-hidden="true"></i>
+                                <span><strong>Лятна градина</strong> — възможност за тържество на открито през топлите месеци.</span>
+                            </p>
+                            <p class="events-include">
+                                <i class="fas fa-check" aria-hidden="true"></i>
+                                <span><strong>Детски кът</strong> — децата са заети и щастливи, докато възрастните празнуват.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <aside class="events-panel reveal">
+                        <h3 class="events-panel-title">Планирате тържество?</h3>
+                        <p class="events-panel-text">
+                            Обадете се, за да проверим свободна дата и да съставим меню
+                            според вашия повод. Отговаряме всеки ден между 9:00 и 22:00 часа.
+                        </p>
+
+                        <div class="events-contact">
+                            <a href="tel:+359885653705" class="events-phone">
+                                <i class="fas fa-phone" aria-hidden="true"></i>
+                                <span>
+                                    <span class="events-phone-label">Резервации</span>
+                                    <span class="events-phone-num">0885 653 705</span>
+                                </span>
+                            </a>
+                            <a href="tel:+359885326396" class="events-phone">
+                                <i class="fas fa-phone" aria-hidden="true"></i>
+                                <span>
+                                    <span class="events-phone-label">Допълнителен номер</span>
+                                    <span class="events-phone-num">0885 326 396</span>
+                                </span>
+                            </a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================= MENU TEASER ============================= -->
+        <section class="section" id="menu-teaser">
+            <div class="container">
+                <div class="section-head section-head--centered reveal">
+                    <p class="eyebrow eyebrow--centered">04 — Меню</p>
+                    <h2>Всеки ден прясно приготвено</h2>
+                    <p class="section-lead">
+                        Над петдесет предложения — от леки салати и супи до барбекю,
+                        паста, пица и десерти от собствена сладкарница.
+                    </p>
+                </div>
+
+                <div class="teaser-grid reveal">
+                    <article class="teaser-card">
+                        <i class="fas fa-leaf" aria-hidden="true"></i>
+                        <h3>Салати и супи</h3>
+                        <p>Шопска, гръцка, капрезе, цезар с пиле, таратор и домашни супи от деня.</p>
+                        <p class="teaser-count">12 предложения</p>
+                    </article>
+                    <article class="teaser-card">
+                        <i class="fas fa-drumstick-bite" aria-hidden="true"></i>
+                        <h3>Основни ястия и барбекю</h3>
+                        <p>Телешки стек, джолан, медени ребра, печена сьомга и традиционна скара.</p>
+                        <p class="teaser-count">13 предложения</p>
+                    </article>
+                    <article class="teaser-card">
+                        <i class="fas fa-pizza-slice" aria-hidden="true"></i>
+                        <h3>Пица, паста и десерти</h3>
+                        <p>Домашна пица на плоча, талиатели с манатарки, ризото и шоколадово суфле.</p>
+                        <p class="teaser-count">16 предложения</p>
+                    </article>
+                </div>
+
+                <div class="gallery-cta reveal">
+                    <a href="menu.html" class="btn">
+                        Отворете менюто с цени
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================= CONTACT ============================= -->
+        <section class="section section--tinted" id="contact">
+            <div class="container">
+                <div class="section-head reveal">
+                    <p class="eyebrow">05 — Контакти</p>
+                    <h2>Заповядайте при нас</h2>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-list reveal">
+                        <div class="contact-item">
+                            <i class="fas fa-location-dot" aria-hidden="true"></i>
+                            <div>
+                                <p class="contact-item-label">Адрес</p>
+                                <address class="contact-item-value">
+                                    ул. „Захари Зограф“ 57<br>
+                                    кв. Драгалевци, София
+                                </address>
+                                <p class="contact-item-note">В подножието на Витоша, с паркинг пред ресторанта.</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="fas fa-phone" aria-hidden="true"></i>
+                            <div>
+                                <p class="contact-item-label">Телефони</p>
+                                <p class="contact-item-value">
+                                    <a href="tel:+359885653705">0885 653 705</a><br>
+                                    <a href="tel:+359885326396">0885 326 396</a>
+                                </p>
+                                <p class="contact-item-note">За резервации и запитвания за тържества.</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <i class="far fa-clock" aria-hidden="true"></i>
+                            <div>
+                                <p class="contact-item-label">Работно време</p>
+                                <p class="contact-item-value">Понеделник – Неделя<br>9:00 – 22:00 ч.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="map-frame reveal">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2744.4734002004925!2d23.321416955370182!3d42.623292950033935!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa83e5eaf78bdd%3A0x76ee33863efe5389!2z0KHRg9C_0LXRgNC80LDRgNC60LXRgiDQnNCw0LrRgQ!5e0!3m2!1sbg!2sfi!4v1591708057652!5m2!1sbg!2sfi"
+                            title="Карта с местоположението на ресторант МАКС"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================= FOOTER ============================= -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <p class="footer-brand">Ресторант <span>МАКС</span></p>
+                    <p class="footer-tagline">
+                        Домашна кухня, лятна градина и детски кът в кв. Драгалевци.
+                        Над 16 години на едно и също място.
+                    </p>
+                </div>
+
+                <div>
+                    <p class="footer-title">Навигация</p>
+                    <div class="footer-list">
+                        <a href="#about">За нас</a>
+                        <a href="#gallery">Галерия</a>
+                        <a href="#events">Тържества и сватби</a>
+                        <a href="menu.html">Меню</a>
+                        <a href="#contact">Контакти</a>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="footer-title">Контакти</p>
+                    <address class="footer-list">
+                        <span>ул. „Захари Зограф“ 57</span>
+                        <span>кв. Драгалевци, София 1407</span>
+                        <a href="tel:+359885653705">0885 653 705</a>
+                        <a href="tel:+359885326396">0885 326 396</a>
+                    </address>
+                </div>
+
+                <div>
+                    <p class="footer-title">Работно време</p>
+                    <div class="footer-list">
+                        <span>Понеделник – Неделя</span>
+                        <span>9:00 – 22:00 ч.</span>
+                    </div>
+
+                    <div class="social-row" style="margin-top: var(--sp-5);">
+                        <a href="https://www.facebook.com/MaksRest/" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="Facebook страница на ресторант МАКС">
+                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                        </a>
+                        <a href="https://www.instagram.com/maks.lunch.dinner.cafe/" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram профил на ресторант МАКС">
+                            <i class="fab fa-instagram" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© <span id="year">2026</span> Ресторант МАКС. Всички права запазени.</p>
+                <p>кв. Драгалевци, София</p>
+            </div>
+        </div>
+    </footer>
+
+    <button type="button" class="to-top" id="toTop" aria-label="Обратно към началото">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/vendor/three.min.js"></script>
+    <script src="js/hero-particles.js"></script>
+</body>
+</html>

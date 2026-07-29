@@ -1,0 +1,38 @@
+# robots.txt for Ресторант МАКС
+# https://restorantmaks.com/robots.txt
+
+User-agent: *
+Allow: /
+Disallow: /cgi-bin/
+Disallow: /.well-known/
+Disallow: /_headers
+Disallow: /.git/
+Disallow: /.github/
+
+# Crawl-delay for polite bots
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://restorantmaks.com/sitemap.xml
+
+# Specific bot rules
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Block bad bots
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+# Security: Block common vulnerability scanners
+User-agent: *
+Disallow: /admin/
+Disallow: /login/
+Disallow: /wp-admin/
+Disallow: /administrator/
+
