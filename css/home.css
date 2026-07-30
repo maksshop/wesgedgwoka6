@@ -1,1 +1,854 @@
+/* ==========================================================================
+   РЕСТОРАНТ МАКС — HOMEPAGE
+   Requires core.css (tokens, reset, base, components).
+   ========================================================================== */
 
+@layer layout, components, sections;
+
+/* ==========================================================================
+   LOADER
+   ========================================================================== */
+@layer components {
+    .loader {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        display: grid;
+        place-items: center;
+        gap: var(--sp-5);
+        background-color: var(--c-bg);
+        transition: opacity var(--dur-slow) var(--ease-out), visibility var(--dur-slow);
+    }
+
+    .loader.is-hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader-mark {
+        font-family: var(--ff-display);
+        font-size: var(--fs-xl);
+        letter-spacing: var(--ls-widest);
+        text-transform: uppercase;
+        color: var(--c-text);
+    }
+
+    .loader-bar {
+        width: 8rem;
+        height: 2px;
+        background-color: var(--c-border);
+        overflow: hidden;
+
+        &::after {
+            content: '';
+            display: block;
+            width: 40%;
+            height: 100%;
+            background-color: var(--c-accent);
+            animation: loader-sweep 1.1s var(--ease-in-out) infinite;
+        }
+    }
+
+    @keyframes loader-sweep {
+        0%   { transform: translateX(-100%); }
+        100% { transform: translateX(350%); }
+    }
+}
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+@layer sections {
+    .hero {
+        position: relative;
+        min-height: 100svh;
+        display: grid;
+        align-items: end;
+        overflow: hidden;
+        isolation: isolate;
+    }
+
+    .hero-stage {
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+    }
+
+    .hero-slide {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        /* Every hero photo is wider in aspect than the frame at every viewport,
+           so the crop is always horizontal — only the X component of --pos does
+           anything. Set per slide inline; see index.html. */
+        background-position: var(--pos, center);
+        opacity: 0;
+        transform: scale(1.06);
+        transition:
+            opacity 1.4s var(--ease-in-out),
+            transform 7s linear;
+    }
+
+    .hero-slide.is-active {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    /* Warm cinematic scrim, anchored to the bottom band where the copy sits.
+       An earlier version also darkened the whole left side, which kept the text
+       legible but greyed out half the photograph. Concentrating the density
+       under the text instead leaves the top ~55% of the frame clean and sunlit,
+       and actually raises contrast behind the headline. The thin top wash is
+       only there so the transparent navigation stays readable. */
+    .hero-scrim {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+            linear-gradient(to top,
+                rgba(18, 11, 7, 0.94) 0%,
+                rgba(18, 11, 7, 0.86) 20%,
+                rgba(18, 11, 7, 0.68) 40%,
+                rgba(18, 11, 7, 0.42) 58%,
+                rgba(18, 11, 7, 0.16) 72%,
+                transparent 82%),
+            linear-gradient(to bottom, rgba(18, 11, 7, 0.42) 0%, transparent 22%),
+            radial-gradient(ellipse at 30% 115%, rgba(184, 73, 47, 0.3), transparent 60%);
+    }
+
+    @media (max-width: 48rem) {
+        /* Portrait viewports crop to a narrow strip, so the copy covers more of
+           the frame — carry the density higher up. */
+        .hero-scrim {
+            background:
+                linear-gradient(to top,
+                    rgba(18, 11, 7, 0.95) 0%,
+                    rgba(18, 11, 7, 0.88) 30%,
+                    rgba(18, 11, 7, 0.6) 55%,
+                    rgba(18, 11, 7, 0.3) 78%,
+                    rgba(18, 11, 7, 0.4) 100%),
+                radial-gradient(ellipse at 50% 115%, rgba(184, 73, 47, 0.28), transparent 62%);
+        }
+    }
+
+    .hero-particles {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+
+        & canvas {
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1.6s var(--ease-out);
+        }
+
+        &.is-ready canvas { opacity: 1; }
+    }
+
+    .hero-content {
+        position: relative;
+        /* Anchored to the bottom band, so the generous top padding the old
+           centred layout needed is gone. Bottom padding clears the slide dots
+           and the scroll cue. */
+        padding-block: var(--sp-7) var(--sp-9);
+        color: #fff;
+        max-width: 46rem;
+    }
+
+    .hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--sp-3);
+        font-size: var(--fs-2xs);
+        font-weight: 600;
+        letter-spacing: var(--ls-widest);
+        text-transform: uppercase;
+        color: var(--gold-300);
+        margin-bottom: var(--sp-5);
+        /* Sits near the top of the copy block where the scrim has thinned out,
+           so it carries its own shadow rather than forcing a darker scrim.
+           Gold on sunlit greenery is inherently low-contrast — the tight inner
+           shadow is what actually separates the glyphs from the foliage. */
+        text-shadow:
+            0 1px 3px rgba(18, 11, 7, 0.95),
+            0 2px 16px rgba(18, 11, 7, 0.8);
+
+        &::before {
+            content: '';
+            width: 2.5rem;
+            height: 1px;
+            background-color: currentColor;
+        }
+    }
+
+    .hero-title {
+        font-size: var(--fs-3xl);
+        font-weight: 500;
+        line-height: 0.98;
+        letter-spacing: -0.03em;
+        text-shadow: 0 2px 30px rgba(0, 0, 0, 0.4);
+
+        & em {
+            display: block;
+            font-style: italic;
+            color: var(--gold-300);
+        }
+    }
+
+    .hero-lead {
+        margin-top: var(--sp-5);
+        max-width: 34rem;
+        font-size: var(--fs-md);
+        line-height: var(--lh-relaxed);
+        color: rgba(255, 255, 255, 0.88);
+        text-shadow: 0 1px 10px rgba(18, 11, 7, 0.7);
+    }
+
+    .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--sp-4);
+        margin-top: var(--sp-6);
+    }
+
+    .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--sp-5);
+        margin-top: var(--sp-7);
+        padding-top: var(--sp-5);
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+        font-size: var(--fs-sm);
+        color: rgba(255, 255, 255, 0.85);
+        text-shadow: 0 1px 8px rgba(18, 11, 7, 0.7);
+    }
+
+    .hero-meta-item {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-2);
+
+        & i { color: var(--gold-300); }
+    }
+
+    /* — Slide dots — */
+    .hero-dots {
+        position: absolute;
+        right: var(--gutter);
+        bottom: var(--sp-8);
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-3);
+        z-index: 3;
+    }
+
+    .hero-dot {
+        width: 2px;
+        height: 2rem;
+        padding: 0;
+        border: none;
+        background-color: rgba(255, 255, 255, 0.35);
+        cursor: pointer;
+        transition: background-color var(--dur-mid) var(--ease-out), height var(--dur-mid) var(--ease-out);
+
+        &[aria-selected='true'] {
+            background-color: var(--gold-300);
+            height: 3.5rem;
+        }
+    }
+
+    @media (max-width: 48rem) {
+        .hero-dots { flex-direction: row; bottom: var(--sp-5); right: auto; left: var(--gutter); }
+        .hero-dot { width: 2rem; height: 2px; }
+        .hero-dot[aria-selected='true'] { width: 3.5rem; height: 2px; }
+    }
+
+    /* — Scroll cue —
+       Deliberately wordless: an earlier version carried a "скрол" label that
+       collided with the meta row running along the bottom of the copy block.
+       A chevron reads the same and fits in the clear strip below it. */
+    .hero-cue {
+        position: absolute;
+        left: 50%;
+        translate: -50% 0;
+        bottom: var(--sp-5);
+        z-index: 3;
+        display: grid;
+        place-items: center;
+        width: 2.5rem;
+        height: 2.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.28);
+        border-radius: var(--r-full);
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 0.8rem;
+        pointer-events: none;
+        opacity: 1;
+        transition: opacity var(--dur-mid) var(--ease-out);
+        animation: cue-bob 2.6s var(--ease-in-out) infinite;
+    }
+
+    /* Faded out by js/app.js as soon as the visitor starts scrolling */
+    .hero-cue.is-hidden { opacity: 0; }
+
+    @keyframes cue-bob {
+        0%, 100% { transform: translateY(0); }
+        50%      { transform: translateY(0.4rem); }
+    }
+
+    /* Phones: the dots move to the bottom-left and the copy fills the frame —
+       the cue would collide, and mobile users don't need the hint. */
+    @media (max-width: 48rem) {
+        .hero-cue { display: none; }
+    }
+}
+
+/* ==========================================================================
+   ABOUT — asymmetric editorial
+   ========================================================================== */
+@layer sections {
+    .about-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--sp-7);
+        align-items: center;
+    }
+
+    @media (min-width: 56rem) {
+        .about-grid {
+            grid-template-columns: 1.05fr 0.95fr;
+            gap: var(--sp-9);
+        }
+    }
+
+    .about-figure {
+        position: relative;
+        border-radius: var(--r-lg);
+        overflow: hidden;
+        box-shadow: var(--sh-lg);
+
+        & img {
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            transition: transform 1.2s var(--ease-out);
+        }
+
+        &:hover img { transform: scale(1.04); }
+    }
+
+    /* Floating "16 години" badge */
+    .about-badge {
+        position: absolute;
+        right: var(--sp-5);
+        bottom: var(--sp-5);
+        display: grid;
+        place-items: center;
+        gap: 0.1rem;
+        width: 8.5rem;
+        height: 8.5rem;
+        border-radius: var(--r-full);
+        background-color: var(--c-accent);
+        color: var(--c-on-accent);
+        text-align: center;
+        box-shadow: var(--sh-lg);
+    }
+
+    .about-badge-num {
+        font-family: var(--ff-display);
+        font-size: 2.6rem;
+        font-weight: 600;
+        line-height: 1;
+    }
+
+    .about-badge-label {
+        font-size: var(--fs-2xs);
+        font-weight: 600;
+        letter-spacing: var(--ls-wide);
+        text-transform: uppercase;
+        opacity: 0.9;
+    }
+
+    .about-body {
+        margin-top: var(--sp-5);
+        font-size: var(--fs-md);
+        line-height: var(--lh-relaxed);
+        color: var(--c-text-2);
+    }
+
+    /* Pull-quote styling for the opening line. Needs real separation from the
+       h2 above it, otherwise the italic reads as part of the heading. */
+    .about-body-lead {
+        font-family: var(--ff-display);
+        font-size: var(--fs-lg);
+        font-style: italic;
+        line-height: var(--lh-snug);
+        color: var(--c-text);
+        margin-bottom: var(--sp-5);
+        padding-left: var(--sp-5);
+        border-left: 2px solid var(--c-accent);
+    }
+
+    .about-features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+        gap: var(--sp-4);
+        margin-top: var(--sp-6);
+        padding-top: var(--sp-6);
+        border-top: 1px solid var(--c-border);
+    }
+
+    .about-feature {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-2);
+        font-size: var(--fs-sm);
+        color: var(--c-text-2);
+
+        & i {
+            font-size: 1.15rem;
+            color: var(--c-accent);
+        }
+
+        & strong {
+            font-family: var(--ff-display);
+            font-size: var(--fs-md);
+            font-weight: 600;
+        }
+    }
+}
+
+/* ==========================================================================
+   GALLERY — asymmetric editorial grid
+   ========================================================================== */
+@layer sections {
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--sp-4);
+    }
+
+    @media (min-width: 56rem) {
+        .gallery-grid {
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 12rem;
+            gap: var(--sp-5);
+        }
+
+        /* Feature the first tile across two columns and two rows */
+        .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+        .gallery-item:nth-child(4) { grid-column: span 2; }
+        .gallery-item:nth-child(6) { grid-column: span 2; }
+    }
+
+    .gallery-item {
+        position: relative;
+        border-radius: var(--r-md);
+        overflow: hidden;
+        background-color: var(--c-surface-2);
+        isolation: isolate;
+
+        & img {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            transition: transform 900ms var(--ease-out), filter var(--dur-mid) var(--ease-out);
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(20, 12, 8, 0.75), transparent 55%);
+            opacity: 0;
+            transition: opacity var(--dur-mid) var(--ease-out);
+        }
+
+        &:hover img { transform: scale(1.06); }
+        &:hover::after { opacity: 1; }
+        &:hover .gallery-caption { opacity: 1; transform: none; }
+    }
+
+    @media (min-width: 56rem) {
+        .gallery-item img { aspect-ratio: auto; }
+    }
+
+    .gallery-caption {
+        position: absolute;
+        inset-inline: 0;
+        bottom: 0;
+        z-index: 1;
+        padding: var(--sp-5);
+        font-family: var(--ff-display);
+        font-size: var(--fs-md);
+        font-weight: 600;
+        color: #fff;
+        opacity: 0;
+        transform: translateY(0.6rem);
+        transition: opacity var(--dur-mid) var(--ease-out), transform var(--dur-mid) var(--ease-out);
+    }
+
+    .gallery-cta {
+        display: flex;
+        justify-content: center;
+        margin-top: var(--sp-7);
+    }
+}
+
+/* ==========================================================================
+   EVENTS — celebrations & weddings
+   ========================================================================== */
+@layer sections {
+    .events {
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+        isolation: isolate;
+        color: #fff;
+        padding-block: var(--sp-section);
+        background-image: url('../images/footer-open-hour-bg.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: scroll;
+    }
+
+    .events::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+            linear-gradient(115deg, rgba(30, 16, 10, 0.94) 0%, rgba(30, 16, 10, 0.78) 45%, rgba(74, 29, 18, 0.6) 100%);
+    }
+
+    .events .eyebrow { color: var(--gold-300); }
+    .events .section-lead { color: rgba(255, 255, 255, 0.82); }
+
+    .events-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--sp-8);
+        align-items: start;
+    }
+
+    @media (min-width: 62rem) {
+        .events-grid { grid-template-columns: 0.95fr 1.05fr; gap: var(--sp-9); }
+    }
+
+    .events-types {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+        gap: var(--sp-4);
+    }
+
+    .event-card {
+        padding: var(--sp-5);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: var(--r-md);
+        background-color: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(6px);
+        transition:
+            background-color var(--dur-mid) var(--ease-out),
+            border-color var(--dur-mid) var(--ease-out),
+            transform var(--dur-mid) var(--ease-out);
+
+        &:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--gold-300);
+            transform: translateY(-4px);
+        }
+
+        & i {
+            display: block;
+            font-size: 1.5rem;
+            color: var(--gold-300);
+            margin-bottom: var(--sp-3);
+        }
+
+        & h3 {
+            font-size: var(--fs-md);
+            font-weight: 600;
+            margin-bottom: var(--sp-2);
+        }
+
+        & p {
+            font-size: var(--fs-sm);
+            line-height: var(--lh-relaxed);
+            color: rgba(255, 255, 255, 0.72);
+        }
+    }
+
+    .events-includes {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-4);
+        margin-top: var(--sp-6);
+        padding-top: var(--sp-6);
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .events-include {
+        display: flex;
+        align-items: flex-start;
+        gap: var(--sp-4);
+        font-size: var(--fs-sm);
+        line-height: var(--lh-relaxed);
+        color: rgba(255, 255, 255, 0.85);
+
+        & i {
+            flex-shrink: 0;
+            margin-top: 0.3rem;
+            color: var(--gold-300);
+        }
+    }
+
+    .events-panel {
+        padding: var(--sp-6);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: var(--r-lg);
+        background-color: rgba(20, 12, 8, 0.5);
+        backdrop-filter: blur(10px);
+    }
+
+    .events-panel-title {
+        font-size: var(--fs-lg);
+        margin-bottom: var(--sp-3);
+    }
+
+    .events-panel-text {
+        font-size: var(--fs-sm);
+        line-height: var(--lh-relaxed);
+        color: rgba(255, 255, 255, 0.78);
+        margin-bottom: var(--sp-5);
+    }
+
+    .events-contact {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-3);
+    }
+
+    .events-phone {
+        display: flex;
+        align-items: center;
+        gap: var(--sp-4);
+        padding: var(--sp-4) var(--sp-5);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: var(--r-md);
+        background-color: rgba(255, 255, 255, 0.06);
+        transition: background-color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+
+        &:hover {
+            background-color: var(--c-accent);
+            border-color: var(--c-accent);
+        }
+
+        & i { font-size: 1.2rem; color: var(--gold-300); }
+        &:hover i { color: #fff; }
+    }
+
+    .events-phone-label {
+        display: block;
+        font-size: var(--fs-2xs);
+        letter-spacing: var(--ls-wide);
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .events-phone-num {
+        font-family: var(--ff-display);
+        font-size: var(--fs-md);
+        font-weight: 600;
+    }
+}
+
+/* ==========================================================================
+   MENU TEASER
+   ========================================================================== */
+@layer sections {
+    .teaser-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--sp-6);
+    }
+
+    @media (min-width: 52rem) {
+        .teaser-grid { grid-template-columns: repeat(3, 1fr); gap: var(--sp-5); }
+    }
+
+    .teaser-card {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-3);
+        padding: var(--sp-6);
+        border: 1px solid var(--c-border);
+        border-radius: var(--r-md);
+        background-color: var(--c-surface);
+        transition:
+            transform var(--dur-mid) var(--ease-out),
+            box-shadow var(--dur-mid) var(--ease-out),
+            border-color var(--dur-mid) var(--ease-out);
+
+        &:hover {
+            transform: translateY(-6px);
+            border-color: var(--c-accent);
+            box-shadow: var(--sh-md);
+        }
+
+        & i {
+            font-size: 1.6rem;
+            color: var(--c-accent);
+        }
+
+        & h3 { font-size: var(--fs-md); }
+
+        & p {
+            font-size: var(--fs-sm);
+            line-height: var(--lh-relaxed);
+            color: var(--c-text-2);
+        }
+    }
+
+    .teaser-count {
+        margin-top: auto;
+        padding-top: var(--sp-4);
+        font-size: var(--fs-2xs);
+        font-weight: 600;
+        letter-spacing: var(--ls-wide);
+        text-transform: uppercase;
+        color: var(--c-text-2);
+    }
+}
+
+/* ==========================================================================
+   CONTACT
+   ========================================================================== */
+@layer sections {
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--sp-7);
+        align-items: start;
+    }
+
+    @media (min-width: 56rem) {
+        .contact-grid { grid-template-columns: 0.85fr 1.15fr; gap: var(--sp-8); }
+    }
+
+    .contact-list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp-5);
+    }
+
+    .contact-item {
+        display: flex;
+        gap: var(--sp-4);
+        padding-bottom: var(--sp-5);
+        border-bottom: 1px solid var(--c-border);
+
+        &:last-child { border-bottom: none; padding-bottom: 0; }
+
+        & > i {
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: var(--r-full);
+            background-color: var(--c-accent-soft);
+            color: var(--c-accent);
+        }
+    }
+
+    .contact-item-label {
+        font-size: var(--fs-2xs);
+        font-weight: 700;
+        letter-spacing: var(--ls-widest);
+        text-transform: uppercase;
+        color: var(--c-text-2);
+        margin-bottom: var(--sp-2);
+    }
+
+    .contact-item-value {
+        font-family: var(--ff-display);
+        font-size: var(--fs-md);
+        font-weight: 600;
+        line-height: var(--lh-snug);
+        font-style: normal;
+
+        & a { transition: color var(--dur-fast) var(--ease-out); }
+        & a:hover { color: var(--c-accent); }
+    }
+
+    .contact-item-note {
+        margin-top: var(--sp-1);
+        font-size: var(--fs-sm);
+        color: var(--c-text-2);
+    }
+
+    .map-frame {
+        position: relative;
+        border-radius: var(--r-lg);
+        overflow: hidden;
+        border: 1px solid var(--c-border);
+        box-shadow: var(--sh-md);
+        min-height: 24rem;
+        height: 100%;
+
+        & iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            min-height: 24rem;
+            border: 0;
+            /* Warm the stock Google map so it sits inside the palette */
+            filter: saturate(0.85) sepia(0.12) contrast(1.02);
+        }
+    }
+
+    :root[data-theme='dark'] .map-frame iframe { filter: invert(0.9) hue-rotate(180deg) saturate(0.7); }
+
+    @media (prefers-color-scheme: dark) {
+        :root:not([data-theme='light']) .map-frame iframe { filter: invert(0.9) hue-rotate(180deg) saturate(0.7); }
+    }
+}
+
+/* ==========================================================================
+   BACK TO TOP
+   ========================================================================== */
+@layer components {
+    .to-top {
+        position: fixed;
+        right: var(--gutter);
+        bottom: var(--gutter);
+        z-index: 90;
+        display: grid;
+        place-items: center;
+        width: 3rem;
+        height: 3rem;
+        border: none;
+        border-radius: var(--r-full);
+        background-color: var(--c-accent);
+        color: var(--c-on-accent);
+        cursor: pointer;
+        box-shadow: var(--sh-md);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(0.75rem);
+        transition:
+            opacity var(--dur-mid) var(--ease-out),
+            visibility var(--dur-mid),
+            transform var(--dur-mid) var(--ease-out),
+            background-color var(--dur-fast) var(--ease-out);
+
+        &:hover { background-color: var(--c-accent-hover); }
+    }
+
+    .to-top.is-visible {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+}
